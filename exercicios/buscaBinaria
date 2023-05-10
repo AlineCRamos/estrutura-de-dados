@@ -1,0 +1,76 @@
+//busca binaria não recursiva
+function buscaBinaria(vetor,valorBusca ){
+    var inicio = 0
+    var fim = vetor.length -1
+
+    while(inicio <= fim){
+        var meio = Math.floor((inicio + fim) / 2)
+
+        if(valorBusca === vetor[meio]){
+            return meio
+        }
+        else if (valorBusca > vetor[meio]){
+            inicio = meio + 1
+        }
+        else{
+            fim = meio -1
+        }
+    }
+    return -1
+}
+var vetor = [4,8,2,1,9,10]
+var valorBusca = 10
+buscaBinaria(vetor,valorBusca)
+//console.log(buscaBinaria(vetor,valorBusca))
+
+
+
+//busca binaria recursiva 
+function busca(A, inicio, fim, x){
+var meio
+
+
+if (inicio > fim){
+ return -1
+ }
+
+ else{
+    meio = Math.floor((inicio + fim) / 2)
+    if (A[meio] == x)
+        return meio
+        else if (x < A[meio])
+        return busca(A, inicio, meio-1, x)
+        else
+        return busca(A, meio+1, fim, x)
+
+        
+    }
+ }
+var vet = [1,2,3,4,5,6,7,8]
+result= busca(vet, 0, vet.length, 8)
+console.log('vet = ' + vet)
+console.log(result)
+
+
+//torre de hanoi busca recursiva
+function hanoi(n, pinoA, pinoB, pinoC) {
+    if (n > 0) {
+      hanoi(n - 1, pinoA, pinoC, pinoB)
+      console.log(`Mover disco ${n} de ${pinoA} para ${pinoC}`);
+      hanoi(n - 1, pinoB, pinoA, pinoC);
+    }
+  }
+  
+ // hanoi(3, 'A', 'B', 'C'); // exemplo coM 3 discos E 3 pinos (A, B, C)
+
+ //correção professora
+ function hanoi(n, origem, destino, aux){
+    if (n==1)
+        console.log("mova disco do pino " + origem + "  para pino " + destino )
+    else{
+        hanoi(n-1, origem, aux, destino)
+         console.log("mova disco do pino " + origem + " para o pino " + destino)
+         hanoi(n-1, aux, destino, origem)
+    }
+ }
+ hanoi(4,'a','b','c')
